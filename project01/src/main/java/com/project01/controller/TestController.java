@@ -10,7 +10,7 @@ public class TestController {
 	
 //	@GetMapping("/testGetParameter")
 //	public String testGetParameter(@ModelAttribute("name") String name) {
-//		System.out.println("name : " + name);
+//		System.out.println("name is : " + name);
 //		
 //		return "testGet";
 //	}
