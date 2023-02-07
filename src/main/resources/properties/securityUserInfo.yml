@@ -1,0 +1,9 @@
+user:
+  - name: "aaa"
+    password: "1234"
+    roles: "USER"
+  - name: "bbb"
+    password: "1234"
+    roles: "USER"
+
+

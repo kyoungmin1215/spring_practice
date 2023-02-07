@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Map;
 
 @Controller
 public class ArticleController {
@@ -15,9 +21,10 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
-    public String newArticleForm() {
+    public String newArticleForm() throws FileNotFoundException {
         return "articles/new";
     }
+
 
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form) {
