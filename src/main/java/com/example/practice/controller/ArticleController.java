@@ -8,12 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Map;
 
 @Controller
 @Slf4j // 로깅을 위한 어노테이션
@@ -32,7 +28,6 @@ public class ArticleController {
 
 //        System.out.println(form.toString());  -> logging 으로 대체
         log.info(form.toString());
-
 
         // DTO를 변환 -> Entity
         Article article = form.toEntity();
