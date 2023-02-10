@@ -1,5 +1,6 @@
 package com.example.practice.config;
 
+import com.example.practice.dto.EnvDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,10 +22,10 @@ import java.util.Map;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-/*    @Override
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        Reader yamlFile = new FileReader("C:\\Users\\wkm25\\Desktop\\practice\\me\\springboot\\practice\\src\\main\\resources\\properties\\securityUserInfo.yml");
+/*        Reader yamlFile = new FileReader("C:\\Users\\wkm25\\Desktop\\practice\\me\\springboot\\practice\\src\\main\\resources\\properties\\securityUserInfo.yml");
         Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
 
         for(int i=0; i<yamlMaps.get("user").size(); i++) {
@@ -34,9 +35,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .withUser(String.valueOf(eachUser.get("name")))
                     .password(passwordEncoder().encode(String.valueOf(eachUser.get("password"))))
                     .roles(String.valueOf(eachUser.get("roles")));
-        }
+        }*/
 
-    }*/
+        // 시스템변수에서 가져온 값으로 시큐리티에 설정하기
+        EnvDTO env = new OS_env().EnvTest();
+
+        auth
+                .inMemoryAuthentication()
+                .withUser(env.getUserName()).password(passwordEncoder().encode(env.getUserPwd()))
+                .roles(env.getUserRole());
+
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -57,8 +66,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-/*    @Bean
+    @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }*/
+    }
 }
