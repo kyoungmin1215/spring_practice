@@ -14,8 +14,6 @@ import java.util.*;
 public class PracticeApplication {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		OS_env env = new OS_env();
-		env.EnvTest();
 		SpringApplication.run(PracticeApplication.class, args);
 	}
 
