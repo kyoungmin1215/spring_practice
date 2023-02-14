@@ -1,15 +1,20 @@
 package com.example.practice.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class FirstController {
 
-    @GetMapping("/hi")
-    public String niceToMeetYou(Model model) {
-        model.addAttribute("username", "가나다");
+    @GetMapping("/{userName}")
+    public String niceToMeetYou(@PathVariable String userName) {
+        if(userName.equals("index.html")) {
+            return "Unknown";
+        }
         return "greetings"; // templates/greetings.mustache -> 브라우저로 전송
     }
 
