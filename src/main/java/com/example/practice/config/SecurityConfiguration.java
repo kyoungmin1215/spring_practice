@@ -25,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-/*        Reader yamlFile = new FileReader("C:\\Users\\wkm25\\Desktop\\practice\\me\\springboot\\practice\\src\\main\\resources\\properties\\securityUserInfo.yml");
+        Reader yamlFile = new FileReader("C:\\Users\\wkm25\\Desktop\\practice\\me\\springboot\\practice\\src\\main\\resources\\properties\\securityUserInfo.yml");
         Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
 
         for(int i=0; i<yamlMaps.get("user").size(); i++) {
@@ -35,15 +35,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .withUser(String.valueOf(eachUser.get("name")))
                     .password(passwordEncoder().encode(String.valueOf(eachUser.get("password"))))
                     .roles(String.valueOf(eachUser.get("roles")));
-        }*/
+        }
 
         // 시스템변수에서 가져온 값으로 시큐리티에 설정하기
-        EnvDTO env = new OS_env().EnvTest();
+/*        EnvDTO env = new OS_env().EnvTest();
 
         auth
                 .inMemoryAuthentication()
                 .withUser(env.getUserName()).password(passwordEncoder().encode(env.getUserPwd()))
-                .roles(env.getUserRole());
+                .roles(env.getUserRole());*/
 
     }
 
