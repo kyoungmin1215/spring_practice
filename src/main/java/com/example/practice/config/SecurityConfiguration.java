@@ -14,6 +14,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,11 +23,9 @@ import java.util.Map;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-
-        //Reader yamlFile = new FileReader("C:\\Users\\wkm25\\Desktop\\practice\\me\\springboot\\practice\\src\\main\\resources\\properties\\securityUserInfo.yml");
         Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
         Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
 
