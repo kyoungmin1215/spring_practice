@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 import java.lang.reflect.Array;
@@ -22,12 +23,17 @@ import java.util.Map;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private Map<String, ArrayList> yamlMaps;
 
+    public SecurityConfiguration(Map<String, ArrayList> yamlMaps) throws FileNotFoundException {
+        Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
+        this.yamlMaps = new Yaml().load(yamlFile);;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 /*        Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
-        Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
+        Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);*/
 
         for(int i=0; i<yamlMaps.get("user").size(); i++) {
             LinkedHashMap eachUser = (LinkedHashMap)(yamlMaps.get("user").get(i));
@@ -36,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .withUser(String.valueOf(eachUser.get("name")))
                     .password(passwordEncoder().encode(String.valueOf(eachUser.get("password"))))
                     .roles(String.valueOf(eachUser.get("roles")));
-        }*/
+        }
 
         // 시스템변수에서 가져온 값으로 시큐리티에 설정하기
 /*        EnvDTO env = new OS_env().EnvTest();
@@ -47,10 +53,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .roles(env.getUserRole());*/
 
 
-        auth
+/*        auth
                 .inMemoryAuthentication()
                 .withUser("test").password(passwordEncoder().encode("1234"))
-                .roles("USER");
+                .roles("USER");*/
 
     }
 
