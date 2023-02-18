@@ -23,17 +23,11 @@ import java.util.Map;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    private Map<String, ArrayList> yamlMaps;
-
-    public SecurityConfiguration(Map<String, ArrayList> yamlMaps) throws FileNotFoundException {
-        Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
-        this.yamlMaps = new Yaml().load(yamlFile);;
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-/*        Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
-        Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);*/
+        Reader yamlFile = new FileReader("src//main//resources//properties//securityUserInfo.yml");
+        Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
 
         for(int i=0; i<yamlMaps.get("user").size(); i++) {
             LinkedHashMap eachUser = (LinkedHashMap)(yamlMaps.get("user").get(i));
