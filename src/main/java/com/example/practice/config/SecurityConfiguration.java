@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        Reader yamlFile = new FileReader("src//main//resources//properties//securityUserInfo.yml");
+        Reader yamlFile = new FileReader("./src/main/resources/properties/securityUserInfo.yml");
         Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
 
         for(int i=0; i<yamlMaps.get("user").size(); i++) {
