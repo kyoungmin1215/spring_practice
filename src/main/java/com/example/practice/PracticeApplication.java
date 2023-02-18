@@ -14,6 +14,7 @@ import java.util.*;
 public class PracticeApplication {
 
 	public static void main(String[] args) throws FileNotFoundException {
+
 		SpringApplication.run(PracticeApplication.class, args);
 	}
 

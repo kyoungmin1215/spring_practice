@@ -3,6 +3,9 @@ package com.example.practice.config;
 import com.example.practice.dto.EnvDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,10 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,8 +30,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        Reader yamlFile = new FileReader("./src/main/resources/properties/securityUserInfo.yml");
+        InputStream inputStream = new ClassPathResource("properties/securityUserInfo.yml").getInputStream();
+        File file = File.createTempFile("test", "yml");
+
+        Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        String filePath = file.getAbsolutePath();
+
+        //Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
+        Reader yamlFile = new FileReader(filePath);
         Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
+
 
         for(int i=0; i<yamlMaps.get("user").size(); i++) {
             LinkedHashMap eachUser = (LinkedHashMap)(yamlMaps.get("user").get(i));
