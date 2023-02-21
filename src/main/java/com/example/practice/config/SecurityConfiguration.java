@@ -16,8 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -30,13 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // After deploying as a jar, the file inside the jar cannot be called as a file.
+        // Copy the file and get the path of the main copy
         InputStream inputStream = new ClassPathResource("properties/securityUserInfo.yml").getInputStream();
-        File file = File.createTempFile("test", "yml");
-
+        File file = File.createTempFile("securityUserInfo", "yml");
         Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
         String filePath = file.getAbsolutePath();
 
-        //Reader yamlFile = new FileReader("src/main/resources/properties/securityUserInfo.yml");
         Reader yamlFile = new FileReader(filePath);
         Map<String, ArrayList> yamlMaps = new Yaml().load(yamlFile);
 
@@ -79,9 +77,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
-
-        // 시큐리티 홀더의 공유 전략 설정 - 쓰레드가 생성하는 하위 쓰레드까지 자원공유
-        //SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
     }
 
 
