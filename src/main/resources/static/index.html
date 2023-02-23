@@ -5,11 +5,21 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<style>
+			.dark-mode {
+				background-color: black;
+				color: white;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
 		<!-- Content -->
 			<div id="content">
+				<div align="right">
+					<button type="button" id = change-color" onclick="changeBackgroundColor()">Dark Mode</button>
+				</div>
 				<div class="inner">
 
 					<!-- Post -->
@@ -201,6 +211,20 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+				function changeBackgroundColor() {
+					var body = document.body;
+					body.classList.toggle("dark-mode");
+
+					var button = document.getElementById("change-color");
+					if(button.innerHTML == "Dark Mode") {
+						button.innerHTML = "Light Mode";
+					} else {
+						button.innerHTML = "Dark Mode";
+					}
+				}
+			</script>
 
 	</body>
 </html>

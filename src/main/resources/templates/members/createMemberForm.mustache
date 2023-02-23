@@ -1,0 +1,15 @@
+{{>layouts/header}}
+
+<!--content-->
+<div class="bg-dark text-white p-5">
+    <form action="/members/new" method="post">
+        <div>
+            <label>이름</label>
+            <input class="form-control me-2" type="text" id="userId" name="userId" placeholder="아이디"><br>
+            <input class="form-control me-2" type="text" id="userPwd" name="userPwd" placeholder="비밀번호"><br>
+            <input class="form-control me-2" type="text" id="userName" name="userName" placeholder="이름"><br>
+        </div>
+        <button class="btn btn-outline-success" type="submit">가입</button>
+    </form>
+</div>
+{{>layouts/footer}}
