@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="layouts/header::header"></th:block>
+
+<!--content-->
+<div class="bg-dark text-white p-5">
+    <table>
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>이름</th>
+        </tr>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.id}"></td>
+            <td th:text="${member.userId}"></td>
+            <td th:text="${member.userName}"></td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="layouts/footer::footer"></th:block>
+</html>

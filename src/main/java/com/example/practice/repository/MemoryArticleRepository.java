@@ -23,4 +23,11 @@ public class MemoryArticleRepository implements ArticleRepository {
     public List<Article> findAll() {
         return new ArrayList<>(articleStore.values());
     }
+
+    @Override
+    public int totalCount() {
+        return articleStore.size();
+    }
+
+
 }

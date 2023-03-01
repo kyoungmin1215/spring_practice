@@ -31,7 +31,6 @@ public class MemberController {
         member.setUserId(memberForm.getUserId());
         member.setUserName(memberForm.getUserName());
         member.setUserPwd(memberForm.getUserPwd());
-
         memberService.join(member);
 
         return "greetings";

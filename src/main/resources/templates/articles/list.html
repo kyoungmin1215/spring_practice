@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="layouts/header::header"></th:block>
+
+    <div class="mb-3">
+        <label class="form-label">목록</label>
+        <table>
+            <tr>
+                <th>제목</th>
+                <th>내용</th>
+            </tr>
+            <tr th:each="article : ${articles}">
+                <td th:text="${article.title}"></td>
+                <td th:text="${article.content}"></td>
+            </tr>
+
+            <tr>
+                <th>
+
+                </th>
+            </tr>
+        </table>
+    </div>
+<th:block th:replace="layouts/footer::footer"></th:block>
+</html>

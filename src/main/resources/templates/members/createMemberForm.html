@@ -1,4 +1,7 @@
-{{>layouts/header}}
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="layouts/header::header"></th:block>
 
 <!--content-->
 <div class="bg-dark text-white p-5">
@@ -12,4 +15,6 @@
         <button class="btn btn-outline-success" type="submit">가입</button>
     </form>
 </div>
-{{>layouts/footer}}
+
+<th:block th:replace="layouts/footer::footer"></th:block>
+</html>

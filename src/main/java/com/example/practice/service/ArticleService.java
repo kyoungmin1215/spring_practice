@@ -6,17 +6,21 @@ import com.example.practice.repository.ArticleRepository;
 import java.util.List;
 
 public class ArticleService {
-    private ArticleRepository repository;
+    private ArticleRepository articleRepository;
 
     public ArticleService(ArticleRepository repository) {
-        this.repository = repository;
+        this.articleRepository = repository;
     }
 
     public void create(Article article) {
-        repository.save(article);
+        articleRepository.save(article);
     }
 
     public List<Article> findAllArticles() {
-        return repository.findAll();
+        return articleRepository.findAll();
+    }
+
+    public int totalArtciclesCount() {
+        return articleRepository.totalCount();
     }
 }

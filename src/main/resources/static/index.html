@@ -12,6 +12,7 @@
 				color: white;
 			}
 		</style>
+
 	</head>
 	<body class="is-preload">
 
@@ -37,7 +38,6 @@
 									<li><a href="#" class="icon brands fa-facebook-f">128</a></li>
 								</ul>
 							</div>
-							<a href="#" class="image featured"><img src="images/pic2.jpeg" alt="" /></a>
 							<p>
 								<strong>SSibal!</strong> I wanna <a href="images/pic1.jpeg">Sex</a>
 							</p>
@@ -58,7 +58,6 @@
 									<li><a href="#" class="icon brands fa-facebook-f">128</a></li>
 								</ul>
 							</div>
-							<a href="#" class="image featured"><img src="images/pic3.jpeg" alt="" /></a>
 						</article>
 
 					<!-- Pagination -->
@@ -139,8 +138,8 @@
 				<!-- Calendar -->
 					<section class="box calendar">
 						<div class="inner">
-							<table>
-								<caption>February 2023</caption>
+							<table id="calendarTable">
+								<caption id="calendarTitle">February 2023</caption>
 								<thead>
 									<tr>
 										<th scope="col" title="Monday">M</th>
@@ -153,46 +152,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td colspan="4" class="pad"><span>&nbsp;</span></td>
-										<td><span>1</span></td>
-										<td><span>2</span></td>
-										<td><span>3</span></td>
-									</tr>
-									<tr>
-										<td><span>4</span></td>
-										<td><span>5</span></td>
-										<td><a href="#">6</a></td>
-										<td><span>7</span></td>
-										<td><span>8</span></td>
-										<td><span>9</span></td>
-										<td><a href="#">10</a></td>
-									</tr>
-									<tr>
-										<td><span>11</span></td>
-										<td><span>12</span></td>
-										<td><span>13</span></td>
-										<td><span>14</span></td>
-										<td><span>15</span></td>
-										<td><span>16</span></td>
-										<td class="today"><a href="#">17</a></td>
-									</tr>
-									<tr>
-										<td><span>18</span></td>
-										<td><span>19</span></td>
-										<td><span>20</span></td>
-										<td><span>21</span></td>
-										<td><span>22</span></td>
-										<td><a href="#">23</a></td>
-										<td><span>24</span></td>
-									</tr>
-									<tr>
-										<td><a href="#">25</a></td>
-										<td><span>26</span></td>
-										<td><span>27</span></td>
-										<td><span>28</span></td>
-										<td class="pad" colspan="3"><span>&nbsp;</span></td>
-									</tr>
+									<script src="assets/js/calendar.js"></script>
 								</tbody>
 							</table>
 						</div>
@@ -211,6 +171,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
 
 			<script>
 				function changeBackgroundColor() {
