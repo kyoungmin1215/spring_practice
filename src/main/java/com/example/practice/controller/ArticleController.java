@@ -3,6 +3,7 @@ package com.example.practice.controller;
 import com.example.practice.dto.ArticleForm;
 import com.example.practice.entity.Article;
 import com.example.practice.repository.ArticleRepository;
+import com.example.practice.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,11 @@ import java.util.List;
 @Slf4j // 로깅을 위한 어노테이션
 public class ArticleController {
 
-    @Autowired // DI, 스프링 부트가 미리 생성해놓은 객체를 가져다가 자동 연결
-    private ArticleRepository articleRepository;
+    private ArticleService articleService;
+
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
+    }
 
     @GetMapping("/articles/new")
     public String newArticleForm(ArticleForm form) {
@@ -30,14 +34,14 @@ public class ArticleController {
         Article article = new Article();
         article.setTitle(form.getTitle());
         article.setContent(form.getContent());
-        articleRepository.save(article);
+        articleService.create(article);
 
         return "redirect:/articles/list";
     }
 
     @GetMapping("/articles/list")
     public String articleList(Model model) {
-        List<Article> articles = articleRepository.findAll();
+        List<Article> articles = articleService.findAllArticles();
         model.addAttribute("articles", articles);
         return "articles/list";
     }
