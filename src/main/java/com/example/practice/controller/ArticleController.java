@@ -44,7 +44,7 @@ public class ArticleController {
     public String articleList(Model model, HttpServletRequest request) {
         int page = 1;
         int limit = 5;
-        int totalCount = articleService.totalArtciclesCount();
+        int totalCount = articleService.totalArticlesCount();
 
         if(request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));

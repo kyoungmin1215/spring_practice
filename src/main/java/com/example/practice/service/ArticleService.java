@@ -20,7 +20,7 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public int totalArtciclesCount() {
+    public int totalArticlesCount() {
         return articleRepository.totalCount();
     }
 }
