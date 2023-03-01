@@ -1,17 +1,14 @@
 package com.example.practice.dto;
 
 import com.example.practice.entity.Article;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
-@AllArgsConstructor
-@ToString
+@Getter
+@Setter
 public class ArticleForm {
 
     private String title;
     private String content;
 
-    public Article toEntity() {
-        return new Article(null, title, content);
-    }
 }

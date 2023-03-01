@@ -1,6 +1,8 @@
 package com.example.practice.config;
 
+import com.example.practice.repository.ArticleRepository;
 import com.example.practice.repository.MemberRepository;
+import com.example.practice.repository.MemoryArticleRepository;
 import com.example.practice.repository.MemoryMemberRepository;
 import com.example.practice.service.MemberService;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +19,11 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
+    }
+
+    @Bean
+    public ArticleRepository articleRepository() {
+        return new MemoryArticleRepository();
     }
 
 }

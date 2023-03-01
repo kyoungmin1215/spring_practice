@@ -6,10 +6,12 @@ import com.example.practice.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 @Controller
 @Slf4j // 로깅을 위한 어노테이션
@@ -19,27 +21,24 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
-    public String newArticleForm() throws FileNotFoundException {
+    public String newArticleForm(ArticleForm form) {
         return "articles/new";
     }
 
-    @PostMapping("/articles/create")
+    @PostMapping("/articles/new")
     public String createArticle(ArticleForm form) {
+        Article article = new Article();
+        article.setTitle(form.getTitle());
+        article.setContent(form.getContent());
+        articleRepository.save(article);
 
-//        System.out.println(form.toString());  -> logging 으로 대체
-        log.info(form.toString());
+        return "redirect:/articles/list";
+    }
 
-        // DTO를 변환 -> Entity
-        Article article = form.toEntity();
-
-//        System.out.println(article.toString());
-        log.info(article.toString());
-
-        // Repository에게 Entity를 DB안에 저장
-        Article saved = articleRepository.save(article);
-//        System.out.println(saved.toString());
-        log.info(saved.toString());
-
-        return "";
+    @GetMapping("/articles/list")
+    public String articleList(Model model) {
+        List<Article> articles = articleRepository.findAll();
+        model.addAttribute("articles", articles);
+        return "articles/list";
     }
 }
