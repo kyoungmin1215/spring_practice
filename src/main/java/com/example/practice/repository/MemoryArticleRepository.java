@@ -1,12 +1,8 @@
 package com.example.practice.repository;
 
 import com.example.practice.entity.Article;
-import com.example.practice.entity.Member;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MemoryArticleRepository implements ArticleRepository {
     private static Map<Long, Article> articleStore = new HashMap<>();
@@ -25,8 +21,31 @@ public class MemoryArticleRepository implements ArticleRepository {
     }
 
     @Override
+    public Optional<Article> findById(Long id) {
+        return Optional.ofNullable(articleStore.get(id));
+    }
+
+    @Override
     public int totalCount() {
         return articleStore.size();
+    }
+
+    @Override
+    public List<Article> pagingArticle(int start, int end) {
+        if(totalCount() == 0) {
+            return findAll();
+        }
+
+        if(end > totalCount()) {
+            end = totalCount();
+        }
+
+        if(start < 1 || start > end) {
+            return null;
+        }
+
+        return new ArrayList<>(findAll().subList(start-1, end));
+
     }
 
 

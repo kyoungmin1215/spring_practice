@@ -14,13 +14,26 @@
                 <td th:text="${article.title}"></td>
                 <td th:text="${article.content}"></td>
             </tr>
-
-            <tr>
-                <th>
-
-                </th>
-            </tr>
         </table>
+        <div th:if="${maxPage >= 1}">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" th:if="${page > 1}" th:href="@{/articles/list(page=${page-1})}" th:text="이전"></a>
+                    </li>
+
+                    <li class="page-item" th:each="n : ${#numbers.sequence(startPage,maxPage)}">
+                        <a class="page-link" th:if="${n==page}" th:text="${n}"></a>
+                        <a class="page-link" th:if="${n!=page}" th:text="${n}" th:href="@{/articles/list(page=${n})}"></a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link" th:if="${page < maxPage}" th:text="다음" th:href="@{/articles/list(page=${page+1})}"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
 <th:block th:replace="layouts/footer::footer"></th:block>
 </html>

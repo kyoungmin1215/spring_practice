@@ -23,4 +23,8 @@ public class ArticleService {
     public int totalArticlesCount() {
         return articleRepository.totalCount();
     }
+
+    public List<Article> rangeArticles(int start, int end) {
+        return articleRepository.pagingArticle(start, end);
+    }
 }

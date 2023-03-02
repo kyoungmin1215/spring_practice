@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j // 로깅을 위한 어노테이션
@@ -60,7 +61,8 @@ public class ArticleController {
         if(endPage > startPage + 10 - 1)
             endPage = startPage + 10 - 1;
 
-        List<Article> articles = articleService.findAllArticles();
+        List<Article> articles =articleService.rangeArticles(startRow, endRow);
+
         model.addAttribute("articles", articles);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
