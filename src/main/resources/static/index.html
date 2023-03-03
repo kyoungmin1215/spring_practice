@@ -139,16 +139,27 @@
 					<section class="box calendar">
 						<div class="inner">
 							<table id="calendarTable">
-								<caption id="calendarTitle">February 2023</caption>
+
 								<thead>
 									<tr>
+										<th>
+											<label onclick="prevCalendar()"> ◀ </label>
+										</th>
+										<th colspan="5">
+											<label id="calendarTitle">February 2023</label>
+										</th>
+										<th>
+											<label onclick="nextCalendar()"> ▶ </label>
+										</th>
+									</tr>
+									<tr>
+										<th scope="col" title="Sunday">S</th>
 										<th scope="col" title="Monday">M</th>
 										<th scope="col" title="Tuesday">T</th>
 										<th scope="col" title="Wednesday">W</th>
 										<th scope="col" title="Thursday">T</th>
 										<th scope="col" title="Friday">F</th>
 										<th scope="col" title="Saturday">S</th>
-										<th scope="col" title="Sunday">S</th>
 									</tr>
 								</thead>
 								<tbody>

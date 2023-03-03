@@ -1,38 +1,56 @@
+const date = new Date();
+const today = {
+    "year": date.getFullYear(),
+    "month": date.getMonth(),
+    "date": date.getDate()
+}
+let now = date;
 
-var today = new Date();
 
-function buildCalendar(){
-  var row = null
-  var calendarTable = document.getElementById("calendarTable");
-  var calendarTableTitle = document.getElementById("calendarTitle");
-  calendarTableTitle.innerHTML = today.getFullYear()+"년"+(today.getMonth()+1)+"월";
-  
-  var lastDate = new Date(today.getFullYear(), today.getMonth()+1, 0);
+function buildCalendar() {
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const last = new Date(year, month+1, 0);
+    const first = new Date(year, month, 0);
 
-  row = calendarTable.insertRow();
+    const lastDate = last.getDate();
+    const firstDay = first.getDay();                                                                                                                                                                                                                                              
 
-  for(i = 1; i <= lastDate.getDate(); i++){
-    if (cnt % 7 == 1) {
-    	cell.innerHTML = "<font color=#F79DC2>" + i + "</font>";
+    const calendarTable = document.getElementById("calendarTable");
+    const calendarTitle = document.getElementById("calendarTitle");
+    calendarTitle.innerHTML = year + "년 " + (month + 1) + "월";
+
+    while(calendarTable.rows.length > 1) {
+        calendarTable.deleteRow(calendarTable.rows.length -1);
     }
 
-    if (cnt % 7 == 0){
-    	cell.innerHTML = "<font color=skyblue>" + i + "</font>";
-    	row = calendar.insertRow();
-    }
-    cell = row.insertCell();
-    cell.innerHTML = i;
-    cell.align = "center";
-  }
+    for (i = 1; i <= lastDate + firstDay; i++) {
+        if(i % 7 == 1) {
+            row = calendarTable.insertRow();
+        }
 
+        const cell = row.insertCell();
+
+        if(i <= firstDay) {
+            cell.innerHTML = "";
+        } else {
+            if(i-firstDay == date.getDate() && month == today["month"] && year == today["year"]) {
+                cell.innerHTML = "<font color=orange>" + (i - firstDay) + "</font>";
+            } else {
+                cell.innerHTML = i - firstDay;
+            }
+        }
+    }
 }
 
 function prevCalendar(){
-	today = new Date(today.getFullYear(), today.getMonth()-1, today.getDate());
+	now = new Date(now.getFullYear(), now.getMonth()-1, now.getDate());
 	buildCalendar();
 }
 
 function nextCalendar(){
-	today = new Date(today.getFullYear(), today.getMonth()+1, today.getDate());
+	now = new Date(now.getFullYear(), now.getMonth()+1, now.getDate());
 	buildCalendar();
 }
+
+buildCalendar();
