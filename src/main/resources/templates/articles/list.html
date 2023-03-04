@@ -15,6 +15,13 @@
                 <td th:text="${article.content}"></td>
             </tr>
         </table>
+
+        <!-- search -->
+        <form class="d-flex" role="search" action="/articles/list">
+            <input class="form-control me-2" id="title" name="title" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
         <div th:if="${maxPage >= 1}">
             <nav>
                 <ul class="pagination">
@@ -33,6 +40,7 @@
                 </ul>
             </nav>
         </div>
+        <a href="/articles/new">글 쓰기</a>
 
     </div>
 <th:block th:replace="layouts/footer::footer"></th:block>
