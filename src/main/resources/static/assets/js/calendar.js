@@ -14,7 +14,7 @@ function buildCalendar() {
     const first = new Date(year, month, 0);
 
     const lastDate = last.getDate();
-    const firstDay = first.getDay();                                                                                                                                                                                                                                              
+    const firstDay = first.getDay() + 1;
 
     const calendarTable = document.getElementById("calendarTable");
     const calendarTitle = document.getElementById("calendarTitle");
