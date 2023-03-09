@@ -20,7 +20,7 @@ function buildCalendar() {
     const calendarTitle = document.getElementById("calendarTitle");
     calendarTitle.innerHTML = year + "년 " + (month + 1) + "월";
 
-    while(calendarTable.rows.length > 1) {
+    while(calendarTable.rows.length > 2) {
         calendarTable.deleteRow(calendarTable.rows.length -1);
     }
 

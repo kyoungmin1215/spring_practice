@@ -140,9 +140,17 @@
 						<div class="inner">
 							<table id="calendarTable">
 								<thead>
-									<span onclick="prevCalendar()"> ◀ </span>
-									<caption id="calendarTitle">February 2023</caption>
-									<span onclick="nextCalendar()"> ▶ </span>
+									<tr>
+										<th>
+											<label onclick="prevCalendar()"> ◀ </label>
+										</th>
+										<th colspan="5">
+											<label id="calendarTitle">현재 년도, 월</label>
+										</th>
+										<th>
+											<label onclick="nextCalendar()"> ▶ </label>
+										</th>
+									</tr>
 									<tr>
 										<th scope="col" title="Sunday">S</th>
 										<th scope="col" title="Monday">M</th>
