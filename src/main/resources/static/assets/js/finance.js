@@ -7,7 +7,7 @@
 
 
 // json 파일 return
-function getFinaceInfo(code) {
+function getFinanceInfo(code) {
     const url = "https://api.finance.naver.com/service/itemSummary.nhn?itemcode=" + code;
 
     try {
@@ -19,7 +19,12 @@ function getFinaceInfo(code) {
 }
 
 async function getNowValue(code) {
-    let financeInfo = await getFinaceInfo(code);
+
+    let financeInfo = await getFinanceInfo(code);
+    // let financeInfo = setInterval(await getFinaceInfo(code),60000);
+    // let financeInfo = setInterval(async function() {
+    //     await getFinaceInfo(code);
+    // }, 20000);
 
     console.log(financeInfo);
 
@@ -50,13 +55,18 @@ async function getNowValue(code) {
         }
     }
     // 테이블에 보낼 거 종료
-    
+
 }
 
 // const set_time = 60000;
 // setInterval(getNowValue("091990"),set_time);
 // setTimeout(getNowValue("091990"), 60000);
-getNowValue("091990");
+// getNowValue("091990");
 
+// setInterval(getNowValue("091990"),20000);
+
+setInterval(async function() {
+    await getNowValue("091990");
+}, 20000);
 
 
