@@ -21,9 +21,9 @@ function getFinanceInfo(code) {
 async function getNowValue(code) {
 
     let financeInfo = await getFinanceInfo(code);
-    // let financeInfo = setInterval(await getFinaceInfo(code),60000);
+    // let financeInfo = setInterval(await getFinanceInfo(code),60000);
     // let financeInfo = setInterval(async function() {
-    //     await getFinaceInfo(code);
+    //     await getFinanceInfo(code);
     // }, 20000);
 
     console.log(financeInfo);
@@ -40,20 +40,27 @@ async function getNowValue(code) {
     financeArr.push([financeName, now_val, current_time]);
     console.log(financeArr);
 
-    // 테이블에 보낼 거
+    // 테이블에 보낼 거 시작
     let financeTable = document.getElementById("financeTable");
 
     // while(financeTable.rows.length > 2) {
     //     financeTable.deleteRow(financeTable.rows.length);
     // }
 
-    for (i=0; i<financeArr.length; i++) {
-        row = financeTable.insertRow();
-        for (each=0; each<financeArr[i].length; each++) {
-            const cell = row.insertCell();
-            cell.innerHTML = financeArr[i][each];
-        }
-    }
+    // for (i=0; i<financeArr.length; i++) {
+    //     row = financeTable.insertRow();
+    //     for (each=0; each<financeArr[i].length; each++) {
+    //         const cell = row.insertCell();
+    //         cell.innerHTML = financeArr[i][each];
+    //     }
+    // }
+
+    financeArr.forEach(finance => {
+        const row = financeTable.insertRow();
+        row.insertCell().innerHTML = finance[0];
+        row.insertCell().innerHTML = finance[1];
+        row.insertCell().innerHTML = finance[2];
+    });
     // 테이블에 보낼 거 종료
 
 }
