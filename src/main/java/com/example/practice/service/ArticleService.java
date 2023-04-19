@@ -2,7 +2,6 @@ package com.example.practice.service;
 
 import com.example.practice.entity.Article;
 import com.example.practice.repository.ArticleRepository;
-
 import java.util.List;
 
 public class ArticleService {
@@ -27,4 +26,5 @@ public class ArticleService {
     public List<Article> rangeArticles(int start, int end) {
         return articleRepository.pagingArticle(start, end);
     }
+
 }

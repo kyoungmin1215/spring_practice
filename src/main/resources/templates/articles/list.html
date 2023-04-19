@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:replace="layouts/header::header"></th:block>
+<th:block th:replace="layouts/index_header::index_header"></th:block>
 
-    <div class="mb-3">
-        <label class="form-label">목록</label>
-        <table>
-            <tr>
-                <th>제목</th>
-                <th>내용</th>
-            </tr>
-            <tr th:each="article : ${articles}">
-                <td th:text="${article.title}"></td>
-                <td th:text="${article.content}"></td>
-            </tr>
-        </table>
-
-        <!-- search -->
-        <form class="d-flex" role="search" action="/articles/list">
-            <input class="form-control me-2" id="title" name="title" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-
-        <div th:if="${maxPage >= 1}">
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" th:if="${page > 1}" th:href="@{/articles/list(page=${page-1})}" th:text="이전"></a>
-                    </li>
-
-                    <li class="page-item" th:each="n : ${#numbers.sequence(startPage,maxPage)}">
-                        <a class="page-link" th:if="${n==page}" th:text="${n}"></a>
-                        <a class="page-link" th:if="${n!=page}" th:text="${n}" th:href="@{/articles/list(page=${n})}"></a>
-                    </li>
-
-                    <li class="page-item">
-                        <a class="page-link" th:if="${page < maxPage}" th:text="다음" th:href="@{/articles/list(page=${page+1})}"></a>
-                    </li>
-                </ul>
-            </nav>
+    <div id="content">
+        <div align="right">
+            <button type="button" id="change-color" onclick="changeBackgroundColor()">Dark Mode</button>
         </div>
-        <a href="/articles/new">글 쓰기</a>
 
+        <div class="inner">
+            <div align="right">
+                <a href="/articles/new">글 쓰기</a>
+            </div>
+
+            <!-- 게시물 -->
+            <div id="board-table">
+                <table>
+                    <tr>
+                        <th>제목</th>
+                        <th>내용</th>
+                    </tr>
+                    <tr th:each="article : ${articles}">
+                        <td th:text="${article.title}"></td>
+                        <td th:text="${article.content}"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 페이징 -->
+            <div th:if="${maxPage >= 1}" align="center">
+                <a class="page-link" th:if="${page > 1}" th:href="@{/articles/list(page=${page-1})}" th:text="이전"></a>
+                <th:block th:each="n : ${#numbers.sequence(startPage,maxPage)}">
+                    <a class="page-link" th:if="${n==page}" th:text="${n}"></a>
+                    <a class="page-link" th:if="${n!=page}" th:text="${n}" th:href="@{/articles/list(page=${n})}"></a>
+                </th:block>
+                <a class="page-link" th:if="${page < maxPage}" th:text="다음" th:href="@{/articles/list(page=${page+1})}"></a>
+            </div>
+        </div>
     </div>
-<th:block th:replace="layouts/footer::footer"></th:block>
+<th:block th:replace="layouts/index_footer::index_footer"></th:block>
 </html>
