@@ -1,16 +1,21 @@
 package com.example.practice.config;
 
-import com.example.practice.repository.ArticleRepository;
-import com.example.practice.repository.MemberRepository;
-import com.example.practice.repository.MemoryArticleRepository;
-import com.example.practice.repository.MemoryMemberRepository;
+import com.example.practice.repository.*;
 import com.example.practice.service.ArticleService;
 import com.example.practice.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+
+    private DataSource dataSource;
+
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public MemberService memberService() {
@@ -24,7 +29,9 @@ public class SpringConfig {
 
     @Bean
     public ArticleRepository articleRepository() {
-        return new MemoryArticleRepository();
+
+//        return new MemoryArticleRepository();
+        return new JdbcTemplateArticleRepository(dataSource);
     }
 
     @Bean
