@@ -30,8 +30,8 @@ public class SpringConfig {
     @Bean
     public ArticleRepository articleRepository() {
 
-//        return new MemoryArticleRepository();
-        return new JdbcTemplateArticleRepository(dataSource);
+        return new MemoryArticleRepository();
+//        return new JdbcTemplateArticleRepository(dataSource);
     }
 
     @Bean
